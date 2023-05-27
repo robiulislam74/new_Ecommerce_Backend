@@ -7,7 +7,7 @@ const aleaRNGFactory = require("number-generator/lib/aleaRNGFactory");
 const nodemailer = require('nodemailer')
 
 const registrationController = async(req,res)=>{
-    const {fullName,email,password,avater,facebookId,linkedinId} = req.body
+    const {fullName,email,password} = req.body
     
     if(!fullName){
         return res.send("error: Please enter your fullName!")
@@ -35,9 +35,6 @@ const registrationController = async(req,res)=>{
                 fullName,
                 email,
                 password:hash,
-                avater,
-                facebookId,
-                linkedinId,
             })
             user.save()
             const generator1 = aleaRNGFactory(Date.now());
