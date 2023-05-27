@@ -7,7 +7,7 @@ const aleaRNGFactory = require("number-generator/lib/aleaRNGFactory");
 const nodemailer = require('nodemailer')
 
 const registrationController = async(req,res)=>{
-    const {fullName,email,password} = req.body
+    const {fullName,email,password,avater,facebookId,linkedinId} = req.body
     
     if(!fullName){
         return res.send("error: Please enter your fullName!")
@@ -35,6 +35,9 @@ const registrationController = async(req,res)=>{
                 fullName,
                 email,
                 password:hash,
+                avater,
+                facebookId,
+                linkedinId,
             })
             user.save()
             const generator1 = aleaRNGFactory(Date.now());
@@ -46,14 +49,14 @@ const registrationController = async(req,res)=>{
                 {new:true},
             )
 
-            // setTimeout(async function(){
-            //     console.log("worked!")
-            //     const randomOtp = await User.findOneAndUpdate(
-            //         {email},
-            //         {$unset:{randomNumberOTP:""}},
-            //         {new:true},
-            //     )
-            // },60000)
+            setTimeout(async function(){
+                console.log("worked!")
+                const randomOtp = await User.findOneAndUpdate(
+                    {email},
+                    {$unset:{randomNumberOTP:""}},
+                    {new:true},
+                )
+            },60000)
             
             let transporter = nodemailer.createTransport({
                 service: "gmail",
