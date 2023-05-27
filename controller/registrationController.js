@@ -49,14 +49,14 @@ const registrationController = async(req,res)=>{
                 {new:true},
             )
 
-            setTimeout(async function(){
-                console.log("worked!")
-                const randomOtp = await User.findOneAndUpdate(
-                    {email},
-                    {$unset:{randomNumberOTP:""}},
-                    {new:true},
-                )
-            },60000)
+            // setTimeout(async function(){
+            //     console.log("worked!")
+            //     const randomOtp = await User.findOneAndUpdate(
+            //         {email},
+            //         {$unset:{randomNumberOTP:""}},
+            //         {new:true},
+            //     )
+            // },60000)
             
             let transporter = nodemailer.createTransport({
                 service: "gmail",
